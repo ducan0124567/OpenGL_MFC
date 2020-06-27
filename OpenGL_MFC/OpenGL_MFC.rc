@@ -32,7 +32,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\OpenGL_MFC.ico"
 
-IDR_OpenGL_MFCTYPE     ICON                    "res\\OpenGL_MFCDoc.ico"
+IDR_OpenGL_MFCTYPE      ICON                    "res\\OpenGL_MFCDoc.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -131,61 +131,26 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&About OpenGL_MFC...",       ID_APP_ABOUT
+        MENUITEM "&About OpenGL_MFC...",        ID_APP_ABOUT
     END
     POPUP "Shapes"
     BEGIN
-        POPUP "Teapot"
+        POPUP "Select Render"
         BEGIN
-            MENUITEM "Solid",                       ID_TEAPOT_SOLID
-            MENUITEM "Wire",                        ID_TEAPOT_WIRE
+            MENUITEM "Solid",                       ID_SELECTRENDER_SOLID
+            MENUITEM "Lines",                       ID_SELECTRENDER_LINES
+            MENUITEM "Point",                       ID_SELECTRENDER_POINT
         END
-        POPUP "Torus"
-        BEGIN
-            MENUITEM "Solid",                       ID_TORUS_SOLID
-            MENUITEM "Wire",                        ID_TORUS_WIRE
-        END
-        POPUP "Cube"
-        BEGIN
-            MENUITEM "Solid",                       ID_CUBE_SOLID
-            MENUITEM "Lines",                       ID_CUBE_LINE
-            MENUITEM "Point",                       ID_CUBE_POINT
-        END
-        POPUP "Box"
-        BEGIN
-            MENUITEM "Solid",                       ID_BOX_SOLID
-            MENUITEM "Lines",                       ID_BOX_LINES
-            MENUITEM "Point",                       ID_BOX_POINT
-        END
-        POPUP "Sphere"
-        BEGIN
-            MENUITEM "Solid",                       ID_SPHERE_SOLID
-            MENUITEM "Wire",                        ID_SPHERE_WIRE
-        END
-        POPUP "Cylinder"
-        BEGIN
-            MENUITEM "Solid",                       ID_CYLINDER_SOLID
-        END
-        POPUP "TruncatedCone"
-        BEGIN
-            MENUITEM "Solid",                       ID_TRUNCATEDCONE_SOLID
-        END
-        POPUP "Cone"
-        BEGIN
-            MENUITEM "Solid",                       ID_CONE_SOLID
-        END
-        POPUP "Pyramid"
-        BEGIN
-            MENUITEM "Solid",                       ID_PYRAMID_SOLID
-            MENUITEM "Lines",                       ID_PYRAMID_LINES
-            MENUITEM "Point",                       ID_PYRAMID_POINT
-        END
-        POPUP "Frustum"
-        BEGIN
-            MENUITEM "Solid",                       ID_FRUSTUM_SOLID
-            MENUITEM "Lines",                       ID_FRUSTUM_LINES
-            MENUITEM "Point",                       ID_FRUSTUM_POINT
-        END
+        MENUITEM "Teapot",                      ID_SHAPES_TEAPOT32815
+        MENUITEM "Torus",                       ID_SHAPES_TORUS32816
+        MENUITEM "Cube",                        ID_SHAPES_CUBE32817
+        MENUITEM "Box",                         ID_SHAPES_BOX32818
+        MENUITEM "Sphere",                      ID_SHAPES_SPHERE32819
+        MENUITEM "Cylinder",                    ID_SHAPES_CYLINDER32820
+        MENUITEM "TruncatedCone",               ID_SHAPES_TRUNCATEDCONE32821
+        MENUITEM "Cone",                        ID_SHAPES_CONE32822
+        MENUITEM "Pyramid",                     ID_SHAPES_PYRAMID32823
+        MENUITEM "Frustum",                     ID_SHAPES_FRUSTUM32824
     END
     POPUP "Affine"
     BEGIN
@@ -206,7 +171,7 @@ END
 
 IDR_HELP_MENU MENU
 BEGIN
-    MENUITEM "&About OpenGL_MFC...",       ID_APP_ABOUT
+    MENUITEM "&About OpenGL_MFC...",        ID_APP_ABOUT
 END
 
 IDR_THEME_MENU MENU

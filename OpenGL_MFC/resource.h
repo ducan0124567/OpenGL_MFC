@@ -13,7 +13,7 @@
 #define ID_VIEW_CUSTOMIZE               126
 #define IDR_MAINFRAME                   128
 #define IDR_MAINFRAME_256               129
-#define IDR_OpenGL_MFCTYPE             130
+#define IDR_OpenGL_MFCTYPE              130
 #define IDR_THEME_MENU                  200
 #define ID_SET_STYLE                    201
 #define ID_VIEW_APPLOOK_WIN_2000        205
@@ -83,13 +83,33 @@
 #define ID_AFFINE_TRANSLATEF            32802
 #define ID_AFFINE_ROTATEF               32803
 #define ID_AFFINE_ROTATEF32804          32804
+#define ID_TORUS_POINT                  32805
+#define ID_TEAPOT_POINT                 32806
+#define ID_SPHERE_POINT                 32807
+#define ID_CYLINDER_POINT               32808
+#define ID_TRUNCATEDCONE_POINT          32809
+#define ID_CONE_POINT                   32810
+#define ID_SHAPES_SELECTRENDER          32811
+#define ID_SELECTRENDER_SOLID           32812
+#define ID_SELECTRENDER_LINES           32813
+#define ID_SELECTRENDER_POINT           32814
+#define ID_SHAPES_TEAPOT32815           32815
+#define ID_SHAPES_TORUS32816            32816
+#define ID_SHAPES_CUBE32817             32817
+#define ID_SHAPES_BOX32818              32818
+#define ID_SHAPES_SPHERE32819           32819
+#define ID_SHAPES_CYLINDER32820         32820
+#define ID_SHAPES_TRUNCATEDCONE32821    32821
+#define ID_SHAPES_CONE32822             32822
+#define ID_SHAPES_PYRAMID32823          32823
+#define ID_SHAPES_FRUSTUM32824          32824
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        314
-#define _APS_NEXT_COMMAND_VALUE         32805
+#define _APS_NEXT_COMMAND_VALUE         32825
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

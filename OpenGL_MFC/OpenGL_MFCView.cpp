@@ -39,51 +39,35 @@ BEGIN_MESSAGE_MAP(COpenGL_MFCView, CView)
 	ON_WM_PAINT()
 	ON_WM_DESTROY()
 	ON_WM_TIMER()
-	ON_COMMAND(ID_TEAPOT_SOLID, &COpenGL_MFCView::OnTeapotSolid)
-	ON_UPDATE_COMMAND_UI(ID_TEAPOT_SOLID, &COpenGL_MFCView::OnUpdateTeapotSolid)
-	ON_UPDATE_COMMAND_UI(ID_TEAPOT_WIRE, &COpenGL_MFCView::OnUpdateTeapotWire)
-	ON_COMMAND(ID_TEAPOT_WIRE, &COpenGL_MFCView::OnTeapotWire)
-	ON_COMMAND(ID_TORUS_SOLID, &COpenGL_MFCView::OnTorusSolid)
-	ON_UPDATE_COMMAND_UI(ID_TORUS_SOLID, &COpenGL_MFCView::OnUpdateTorusSolid)
-	ON_COMMAND(ID_TORUS_WIRE, &COpenGL_MFCView::OnTorusWire)
-	ON_UPDATE_COMMAND_UI(ID_TORUS_WIRE, &COpenGL_MFCView::OnUpdateTorusWire)
-	ON_COMMAND(ID_CUBE_SOLID, &COpenGL_MFCView::OnCubeSolid)
-	ON_COMMAND(ID_CUBE_LINE, &COpenGL_MFCView::OnCubeLine)
-	ON_COMMAND(ID_CUBE_POINT, &COpenGL_MFCView::OnCubePoint)
-	ON_COMMAND(ID_BOX_SOLID, &COpenGL_MFCView::OnBoxSolid)
-	ON_COMMAND(ID_BOX_LINES, &COpenGL_MFCView::OnBoxLines)
-	ON_COMMAND(ID_BOX_POINT, &COpenGL_MFCView::OnBoxPoint)
-	ON_COMMAND(ID_SPHERE_SOLID, &COpenGL_MFCView::OnSphereSolid)
-	ON_COMMAND(ID_SPHERE_WIRE, &COpenGL_MFCView::OnSphereWire)
-	ON_COMMAND(ID_CYLINDER_SOLID, &COpenGL_MFCView::OnCylinderSolid)
-	ON_COMMAND(ID_TRUNCATEDCONE_SOLID, &COpenGL_MFCView::OnTruncatedconeSolid)
-	ON_COMMAND(ID_CONE_SOLID, &COpenGL_MFCView::OnConeSolid)
-	ON_COMMAND(ID_PYRAMID_SOLID, &COpenGL_MFCView::OnPyramidSolid)
-	ON_COMMAND(ID_PYRAMID_LINES, &COpenGL_MFCView::OnPyramidLines)
-	ON_COMMAND(ID_PYRAMID_POINT, &COpenGL_MFCView::OnPyramidPoint)
-	ON_COMMAND(ID_FRUSTUM_SOLID, &COpenGL_MFCView::OnFrustumSolid)
-	ON_COMMAND(ID_FRUSTUM_LINES, &COpenGL_MFCView::OnFrustumLines)
-	ON_COMMAND(ID_FRUSTUM_POINT, &COpenGL_MFCView::OnFrustumPoint)
-	ON_UPDATE_COMMAND_UI(ID_CUBE_SOLID, &COpenGL_MFCView::OnUpdateCubeSolid)
-	ON_UPDATE_COMMAND_UI(ID_CUBE_LINE, &COpenGL_MFCView::OnUpdateCubeLine)
-	ON_UPDATE_COMMAND_UI(ID_CUBE_POINT, &COpenGL_MFCView::OnUpdateCubePoint)
-	ON_UPDATE_COMMAND_UI(ID_BOX_SOLID, &COpenGL_MFCView::OnUpdateBoxSolid)
-	ON_UPDATE_COMMAND_UI(ID_BOX_LINES, &COpenGL_MFCView::OnUpdateBoxLines)
-	ON_UPDATE_COMMAND_UI(ID_BOX_POINT, &COpenGL_MFCView::OnUpdateBoxPoint)
-	ON_UPDATE_COMMAND_UI(ID_SPHERE_SOLID, &COpenGL_MFCView::OnUpdateSphereSolid)
-	ON_UPDATE_COMMAND_UI(ID_SPHERE_WIRE, &COpenGL_MFCView::OnUpdateSphereWire)
-	ON_UPDATE_COMMAND_UI(ID_CYLINDER_SOLID, &COpenGL_MFCView::OnUpdateCylinderSolid)
-	ON_UPDATE_COMMAND_UI(ID_TRUNCATEDCONE_SOLID, &COpenGL_MFCView::OnUpdateTruncatedconeSolid)
-	ON_UPDATE_COMMAND_UI(ID_CONE_SOLID, &COpenGL_MFCView::OnUpdateConeSolid)
-	ON_UPDATE_COMMAND_UI(ID_PYRAMID_SOLID, &COpenGL_MFCView::OnUpdatePyramidSolid)
-	ON_UPDATE_COMMAND_UI(ID_PYRAMID_LINES, &COpenGL_MFCView::OnUpdatePyramidLines)
-	ON_UPDATE_COMMAND_UI(ID_PYRAMID_POINT, &COpenGL_MFCView::OnUpdatePyramidPoint)
-	ON_UPDATE_COMMAND_UI(ID_FRUSTUM_SOLID, &COpenGL_MFCView::OnUpdateFrustumSolid)
-	ON_UPDATE_COMMAND_UI(ID_FRUSTUM_LINES, &COpenGL_MFCView::OnUpdateFrustumLines)
-	ON_UPDATE_COMMAND_UI(ID_FRUSTUM_POINT, &COpenGL_MFCView::OnUpdateFrustumPoint)
 	ON_COMMAND(ID_AFFINE_TRANSLATEF, &COpenGL_MFCView::OnAffineTranslatef)
 	ON_UPDATE_COMMAND_UI(ID_AFFINE_TRANSLATEF, &COpenGL_MFCView::OnUpdateAffineTranslatef)
 	ON_COMMAND(ID_AFFINE_ROTATEF32804, &COpenGL_MFCView::OnAffineRotatef)
+	ON_COMMAND(ID_SELECTRENDER_SOLID, &COpenGL_MFCView::OnSelectrenderSolid)
+	ON_COMMAND(ID_SELECTRENDER_LINES, &COpenGL_MFCView::OnSelectrenderLines)
+	ON_COMMAND(ID_SELECTRENDER_POINT, &COpenGL_MFCView::OnSelectrenderPoint)
+	ON_UPDATE_COMMAND_UI(ID_SELECTRENDER_SOLID, &COpenGL_MFCView::OnUpdateSelectrenderSolid)
+	ON_UPDATE_COMMAND_UI(ID_SELECTRENDER_LINES, &COpenGL_MFCView::OnUpdateSelectrenderLines)
+	ON_UPDATE_COMMAND_UI(ID_SELECTRENDER_POINT, &COpenGL_MFCView::OnUpdateSelectrenderPoint)
+	ON_COMMAND(ID_SHAPES_TEAPOT32815, &COpenGL_MFCView::OnShapesTeapot)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_TEAPOT32815, &COpenGL_MFCView::OnUpdateShapesTeapot)
+	ON_COMMAND(ID_SHAPES_TORUS32816, &COpenGL_MFCView::OnShapesTorus)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_TORUS32816, &COpenGL_MFCView::OnUpdateShapesTorus)
+	ON_COMMAND(ID_SHAPES_CUBE32817, &COpenGL_MFCView::OnShapesCube)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_CUBE32817, &COpenGL_MFCView::OnUpdateShapesCube)
+	ON_COMMAND(ID_SHAPES_BOX32818, &COpenGL_MFCView::OnShapesBox)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_BOX32818, &COpenGL_MFCView::OnUpdateShapesBox)
+	ON_COMMAND(ID_SHAPES_SPHERE32819, &COpenGL_MFCView::OnShapesSphere)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_SPHERE32819, &COpenGL_MFCView::OnUpdateShapesSphere)
+	ON_COMMAND(ID_SHAPES_CYLINDER32820, &COpenGL_MFCView::OnShapesCylinder)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_CYLINDER32820, &COpenGL_MFCView::OnUpdateShapesCylinder)
+	ON_COMMAND(ID_SHAPES_TRUNCATEDCONE32821, &COpenGL_MFCView::OnShapesTruncatedcone)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_TRUNCATEDCONE32821, &COpenGL_MFCView::OnUpdateShapesTruncatedcone)
+	ON_COMMAND(ID_SHAPES_CONE32822, &COpenGL_MFCView::OnShapesCone)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_CONE32822, &COpenGL_MFCView::OnUpdateShapesCone)
+	ON_COMMAND(ID_SHAPES_PYRAMID32823, &COpenGL_MFCView::OnShapesPyramid)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_PYRAMID32823, &COpenGL_MFCView::OnUpdateShapesPyramid)
+	ON_COMMAND(ID_SHAPES_FRUSTUM32824, &COpenGL_MFCView::OnShapesFrustum)
+	ON_UPDATE_COMMAND_UI(ID_SHAPES_FRUSTUM32824, &COpenGL_MFCView::OnUpdateShapesFrustum)
 END_MESSAGE_MAP()
 
 // COpenGL_MFCView construction/destruction
@@ -170,25 +154,18 @@ void COpenGL_MFCView::InitOpenGL(void)
 
 	//Teapot
 	g_SolidTeapot = MakeSolidTeapot(3.0);
-	g_WireTeapot = MakeWireTeapot(3.0);
 
 	//Torus
 	g_SolidTorus = MakeSolidTorus(1.0f, 3.00f, 32, 32);
-	g_WireTorus = MakeWireTorus(1.0f, 3.00f, 32, 32);
 
 	//Cube
 	g_SolidCube = MakeSolidCube(3.0);
-	g_LinesCube = MakeLinesCube(3.0);
-	g_PointCube = MakePointCube(3.0);
 
 	//Box
 	g_SolidBox = MakeSolidBox(5.0, 2.0, 4.0);
-	g_LinesBox = MakeLinesBox(5.0, 2.0, 4.0);
-	g_PointBox = MakePointBox(5.0, 2.0, 4.0);
 
 	//Sphere
 	g_SolidSphere = MakeSolidSphere(4.0);
-	g_WireSphere = MakeWireSphere(4.0);
 
 	//Cylinder
 	g_SolidCylinder = MakeSolidCylinder(4.0, 5.0);
@@ -199,15 +176,14 @@ void COpenGL_MFCView::InitOpenGL(void)
 	//Cone
 	g_SolidCone = MakeSolidCone(2.0, 8.0);
 
+
 	//Pyramid
 	g_SolidPyramid = MakeSolidPyramid(3.0, 5.0);
-	g_LinesPyramid = MakeLinesPyramid(3.0, 5.0);
-	g_PointPyramid = MakePointPyramid(3.0, 5.0);
+
 	
 	//Frustum
 	g_SolidFrustum = MakeSolidFrustumShape(5.0, 3.0, 6.0);
-	g_LinesFrustum = MakeLinesFrustumShape(5.0, 3.0, 6.0);
-	g_PointFrustum = MakePointFrustumShape(5.0, 3.0, 6.0);
+
 
 }
 
@@ -237,57 +213,54 @@ void COpenGL_MFCView::DrawCoordinate()
 
 void COpenGL_MFCView::Select_Shape_Render()
 {
-	
+	switch (SelectRender)
+	{
+	default:
+		break;
+	case 1:
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+	}
+	case 2:
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		break;
+	}
+	case 3:
+	{
+		glPointSize(3);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		break;
+	}
+	}
 	switch (SelectShape)
 	{
 	default:
 		break;
 	case 1:
 	{
-		if (SelectRender == 1)
-			//glCallList(g_SolidTeapot);
-		{
-			glCallList(g_SolidTeapot);
-			
-		}
-		if (SelectRender == 2)
-			glCallList(g_WireTeapot);
+		glCallList(g_SolidTeapot);
 		break;
 	}
 	case 2:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidTorus);
-		if (SelectRender == 2)
-			glCallList(g_WireTorus);
+		glCallList(g_SolidTorus);
 		break;
 	}
 	case 3:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidCube);
-		if (SelectRender == 2)
-			glCallList(g_LinesCube);
-		if (SelectRender == 3)
-			glCallList(g_PointCube);
+		glCallList(g_SolidCube);
 		break;
 	}
 	case 4:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidBox);
-		if (SelectRender == 2)
-			glCallList(g_LinesBox);
-		if (SelectRender == 3)
-			glCallList(g_PointBox);
+		glCallList(g_SolidBox);
 		break;
 	}
 	case 5:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidSphere);
-		if (SelectRender == 2)
-			glCallList(g_WireSphere);
+		glCallList(g_SolidSphere);
 		break;
 	}
 	case 6:
@@ -307,22 +280,12 @@ void COpenGL_MFCView::Select_Shape_Render()
 	}
 	case 9:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidPyramid);
-		if (SelectRender == 2)
-			glCallList(g_LinesPyramid);
-		if (SelectRender == 3)
-			glCallList(g_PointPyramid);
+		glCallList(g_SolidPyramid);
 		break;
 	}
 	case 10:
 	{
-		if (SelectRender == 1)
-			glCallList(g_SolidFrustum);
-		if (SelectRender == 2)
-			glCallList(g_LinesFrustum);
-		if (SelectRender == 3)
-			glCallList(g_PointFrustum);
+		glCallList(g_SolidFrustum);
 		break;
 	}
 	}
@@ -448,6 +411,7 @@ void COpenGL_MFCView::OnPaint()
 	//RotateF
 	glRotatef(angleRo, xRo, yRo, zRo);
 	//Select Shape and Render
+
 	Select_Shape_Render();
 
 	glPopMatrix();
@@ -476,342 +440,199 @@ void COpenGL_MFCView::OnDestroy()
 
 
 //Select Shape and Render UI
-void COpenGL_MFCView::OnTeapotSolid()
+void COpenGL_MFCView::OnSelectrenderSolid()
 {
-	// TODO: Add your command handler code here
-	SelectShape = 1;
 	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnTeapotWire()
+
+void COpenGL_MFCView::OnSelectrenderLines()
 {
-	// TODO: Add your command handler code here
-	SelectShape = 1;
 	SelectRender = 2;
 }
 
-void COpenGL_MFCView::OnTorusSolid()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 2;
-	SelectRender = 1;
-}
 
-void COpenGL_MFCView::OnTorusWire()
+void COpenGL_MFCView::OnSelectrenderPoint()
 {
-	// TODO: Add your command handler code here
-	SelectShape = 2;
-	SelectRender = 2;
-}
-
-void COpenGL_MFCView::OnCubeSolid()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 3;
-	SelectRender = 1;
-}
-
-void COpenGL_MFCView::OnCubeLine()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 3;
-	SelectRender = 2;
-}
-
-void COpenGL_MFCView::OnCubePoint()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 3;
 	SelectRender = 3;
 }
 
-void COpenGL_MFCView::OnBoxSolid()
+
+void COpenGL_MFCView::OnUpdateSelectrenderSolid(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 4;
-	SelectRender = 1;
+	if (SelectRender == 1)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
 }
 
-void COpenGL_MFCView::OnBoxLines()
+
+void COpenGL_MFCView::OnUpdateSelectrenderLines(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 4;
-	SelectRender = 2;
+	if (SelectRender == 2)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
 }
 
-void COpenGL_MFCView::OnBoxPoint()
+
+void COpenGL_MFCView::OnUpdateSelectrenderPoint(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 4;
-	SelectRender = 3;
+	if (SelectRender == 3)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
 }
 
-void COpenGL_MFCView::OnSphereSolid()
+
+void COpenGL_MFCView::OnShapesTeapot()
 {
-	// TODO: Add your command handler code here
+	SelectShape = 1;
+}
+
+
+void COpenGL_MFCView::OnUpdateShapesTeapot(CCmdUI* pCmdUI)
+{
+	if (SelectShape == 1)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesTorus()
+{
+	SelectShape = 2;
+}
+
+
+void COpenGL_MFCView::OnUpdateShapesTorus(CCmdUI* pCmdUI)
+{
+	if (SelectShape == 2)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesCube()
+{
+	SelectShape = 3;
+}
+
+
+void COpenGL_MFCView::OnUpdateShapesCube(CCmdUI* pCmdUI)
+{
+	if (SelectShape == 3)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesBox()
+{
+	SelectShape = 4;
+}
+
+
+void COpenGL_MFCView::OnUpdateShapesBox(CCmdUI* pCmdUI)
+{
+	if (SelectShape == 4)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesSphere()
+{
 	SelectShape = 5;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnSphereWire()
+
+void COpenGL_MFCView::OnUpdateShapesSphere(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 5;
-	SelectRender = 2;
+	if (SelectShape == 5)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
 }
 
-void COpenGL_MFCView::OnCylinderSolid()
+
+void COpenGL_MFCView::OnShapesCylinder()
 {
-	// TODO: Add your command handler code here
 	SelectShape = 6;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnTruncatedconeSolid()
+
+void COpenGL_MFCView::OnUpdateShapesCylinder(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
+	if (SelectShape == 6)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesTruncatedcone()
+{
 	SelectShape = 7;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnConeSolid()
+
+void COpenGL_MFCView::OnUpdateShapesTruncatedcone(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
+	if (SelectShape == 7)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesCone()
+{
 	SelectShape = 8;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnPyramidSolid()
+
+void COpenGL_MFCView::OnUpdateShapesCone(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
+	if (SelectShape == 8)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnShapesPyramid()
+{
 	SelectShape = 9;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnPyramidLines()
+
+void COpenGL_MFCView::OnUpdateShapesPyramid(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 9;
-	SelectRender = 2;
+	if (SelectShape == 9)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
 }
 
-void COpenGL_MFCView::OnPyramidPoint()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 9;
-	SelectRender = 3;
-}
 
-void COpenGL_MFCView::OnFrustumSolid()
+void COpenGL_MFCView::OnShapesFrustum()
 {
-	// TODO: Add your command handler code here
 	SelectShape = 10;
-	SelectRender = 1;
 }
 
-void COpenGL_MFCView::OnFrustumLines()
-{
-	// TODO: Add your command handler code here
-	SelectShape = 10;
-	SelectRender = 2;
-}
 
-void COpenGL_MFCView::OnFrustumPoint()
+void COpenGL_MFCView::OnUpdateShapesFrustum(CCmdUI* pCmdUI)
 {
-	// TODO: Add your command handler code here
-	SelectShape = 10;
-	SelectRender = 3;
-}
-
-void COpenGL_MFCView::OnUpdateTeapotSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 1 && SelectRender == 1)
+	if (SelectShape == 10)
 		pCmdUI->SetCheck(1);
 	else
 		pCmdUI->SetCheck(0);
 }
-
-void COpenGL_MFCView::OnUpdateTeapotWire(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 1 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateTorusSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 2 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateTorusWire(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 2 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateCubeSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 3 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateCubeLine(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 3 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateCubePoint(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 3 && SelectRender == 3)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateBoxSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 4 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateBoxLines(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 4 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateBoxPoint(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 4 && SelectRender == 3)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateSphereSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 5 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateSphereWire(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 5 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateCylinderSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 6 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateTruncatedconeSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 7 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateConeSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 8 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdatePyramidSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 9 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdatePyramidLines(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 9 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdatePyramidPoint(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 9 && SelectRender == 3)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateFrustumSolid(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 10 && SelectRender == 1)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateFrustumLines(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 10 && SelectRender == 2)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
-void COpenGL_MFCView::OnUpdateFrustumPoint(CCmdUI* pCmdUI)
-{
-	// TODO: Add your command update UI handler code here
-	if (SelectShape == 10 && SelectRender == 3)
-		pCmdUI->SetCheck(1);
-	else
-		pCmdUI->SetCheck(0);
-}
-
 
 void COpenGL_MFCView::OnAffineTranslatef()
 {
@@ -832,7 +653,7 @@ void COpenGL_MFCView::OnUpdateAffineTranslatef(CCmdUI* pCmdUI)
 
 void COpenGL_MFCView::OnAffineRotatef()
 {
-	// TODO: Add your command handler code here
+
 	RotateSettingDlg dlg;
 	dlg.DoModal();
 	angleRo = dlg.GetAdjustAro();

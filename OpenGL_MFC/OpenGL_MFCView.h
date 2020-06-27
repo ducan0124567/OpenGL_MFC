@@ -23,25 +23,18 @@ public:
 
 	//Teapot
 	GLuint g_SolidTeapot;
-	GLuint g_WireTeapot;
 
 	//Torus
 	GLuint g_SolidTorus;
-	GLuint g_WireTorus;
 
 	//Cube
 	GLuint g_SolidCube;
-	GLuint g_LinesCube;
-	GLuint g_PointCube;
 
 	//box
 	GLuint g_SolidBox;
-	GLuint g_LinesBox;
-	GLuint g_PointBox;
 
 	//Sphere
 	GLuint g_SolidSphere;
-	GLuint g_WireSphere;
 
 	//Cylinder
 	GLuint g_SolidCylinder;
@@ -54,13 +47,9 @@ public:
 
 	//Pyramid
 	GLuint g_SolidPyramid;
-	GLuint g_LinesPyramid;
-	GLuint g_PointPyramid;
 
 	//Frustum
 	GLuint g_SolidFrustum;
-	GLuint g_LinesFrustum;
-	GLuint g_PointFrustum;
 
 	//1 - Teapot
 	//2 - Torus
@@ -75,7 +64,7 @@ public:
 	int SelectShape = 1;
 
 	//1 - Solid
-	//2 - Wire/Line
+	//2 - Lines
 	//3 - Point
 	int SelectRender = 1;
 
@@ -131,51 +120,35 @@ public:
 	afx_msg void OnPaint();
 	afx_msg void OnDestroy();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnTeapotSolid();
-	afx_msg void OnUpdateTeapotSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateTeapotWire(CCmdUI* pCmdUI);
-	afx_msg void OnTeapotWire();
-	afx_msg void OnTorusSolid();
-	afx_msg void OnUpdateTorusSolid(CCmdUI* pCmdUI);
-	afx_msg void OnTorusWire();
-	afx_msg void OnUpdateTorusWire(CCmdUI* pCmdUI);
-	afx_msg void OnCubeSolid();
-	afx_msg void OnCubeLine();
-	afx_msg void OnCubePoint();
-	afx_msg void OnBoxSolid();
-	afx_msg void OnBoxLines();
-	afx_msg void OnBoxPoint();
-	afx_msg void OnSphereSolid();
-	afx_msg void OnSphereWire();
-	afx_msg void OnCylinderSolid();
-	afx_msg void OnTruncatedconeSolid();
-	afx_msg void OnConeSolid();
-	afx_msg void OnPyramidSolid();
-	afx_msg void OnPyramidLines();
-	afx_msg void OnPyramidPoint();
-	afx_msg void OnFrustumSolid();
-	afx_msg void OnFrustumLines();
-	afx_msg void OnFrustumPoint();
-	afx_msg void OnUpdateCubeSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateCubeLine(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateCubePoint(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateBoxSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateBoxLines(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateBoxPoint(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateSphereSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateSphereWire(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateCylinderSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateTruncatedconeSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateConeSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePyramidSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePyramidLines(CCmdUI* pCmdUI);
-	afx_msg void OnUpdatePyramidPoint(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFrustumSolid(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFrustumLines(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateFrustumPoint(CCmdUI* pCmdUI);
 	afx_msg void OnAffineTranslatef();
 	afx_msg void OnUpdateAffineTranslatef(CCmdUI* pCmdUI);
 	afx_msg void OnAffineRotatef();
+	afx_msg void OnSelectrenderSolid();
+	afx_msg void OnSelectrenderLines();
+	afx_msg void OnSelectrenderPoint();
+	afx_msg void OnUpdateSelectrenderSolid(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateSelectrenderLines(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateSelectrenderPoint(CCmdUI* pCmdUI);
+	afx_msg void OnShapesTeapot();
+	afx_msg void OnUpdateShapesTeapot(CCmdUI* pCmdUI);
+	afx_msg void OnShapesTorus();
+	afx_msg void OnUpdateShapesTorus(CCmdUI* pCmdUI);
+	afx_msg void OnShapesCube();
+	afx_msg void OnUpdateShapesCube(CCmdUI* pCmdUI);
+	afx_msg void OnShapesBox();
+	afx_msg void OnUpdateShapesBox(CCmdUI* pCmdUI);
+	afx_msg void OnShapesSphere();
+	afx_msg void OnUpdateShapesSphere(CCmdUI* pCmdUI);
+	afx_msg void OnShapesCylinder();
+	afx_msg void OnUpdateShapesCylinder(CCmdUI* pCmdUI);
+	afx_msg void OnShapesTruncatedcone();
+	afx_msg void OnUpdateShapesTruncatedcone(CCmdUI* pCmdUI);
+	afx_msg void OnShapesCone();
+	afx_msg void OnUpdateShapesCone(CCmdUI* pCmdUI);
+	afx_msg void OnShapesPyramid();
+	afx_msg void OnUpdateShapesPyramid(CCmdUI* pCmdUI);
+	afx_msg void OnShapesFrustum();
+	afx_msg void OnUpdateShapesFrustum(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in OpenGL_MFCView.cpp
