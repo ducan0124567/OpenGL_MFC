@@ -156,6 +156,8 @@ BEGIN
     BEGIN
         MENUITEM "Translatef",                  ID_AFFINE_TRANSLATEF
         MENUITEM "Rotatef",                     ID_AFFINE_ROTATEF32804
+        MENUITEM "Translatef (Mouse)",          ID_AFFINE_TRANSLATEF32825
+        MENUITEM "Rotatef (Mouse)",             ID_AFFINE_ROTATEF32826
     END
 END
 

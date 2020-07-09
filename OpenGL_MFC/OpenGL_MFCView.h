@@ -18,36 +18,41 @@ public:
 	float m_angle = 0.0f;
 	int m_hTimer = 0;
 	
+	//Check Translatef with Mouse
+	// 0 - off
+	// 1 - on
+	int TranslateMouseCheck;
+
+	//Check Rotatef with Mouse
+	// 0 - off
+	// 1 - on
+	int RotatefMouseCheck;
+
+	//LbuttonDown
+	CPoint m_point1;
+	//LbuttonUp
+	CPoint m_point2;
+
 	//Base
 	GLuint g_Base;
-
 	//Teapot
 	GLuint g_SolidTeapot;
-
 	//Torus
 	GLuint g_SolidTorus;
-
 	//Cube
 	GLuint g_SolidCube;
-
 	//box
 	GLuint g_SolidBox;
-
 	//Sphere
 	GLuint g_SolidSphere;
-
 	//Cylinder
 	GLuint g_SolidCylinder;
-
 	//TruncatedCone
 	GLuint g_SolidTruncatedCone;
-
 	//Cone
 	GLuint g_SolidCone;
-
 	//Pyramid
 	GLuint g_SolidPyramid;
-
 	//Frustum
 	GLuint g_SolidFrustum;
 
@@ -80,7 +85,8 @@ public:
 	GLfloat angleRo = 0.0f, xRo = 0.0f, yRo = 0.0f, zRo = 0.0f;
 
 	//gluLookAt
-	GLdouble eyeX = 5.0, eyeY = 10.0, eyeZ = 15.0, centerX = 0.0, centerY = 0.0, centerZ = 0.0, upX = 0.0, upY = 1.0, upZ = 0.0;
+	//GLdouble eyeX = 5.0, eyeY = 10.0, eyeZ = 15.0, centerX = 0.0, centerY = 0.0, centerZ = 0.0, upX = 0.0, upY = 1.0, upZ = 0.0;
+	GLdouble eyeX = 0.0, eyeY = 0.0, eyeZ = 15.0, centerX = 0.0, centerY = 0.0, centerZ = 0.0, upX = 0.0, upY = 1.0, upZ = 0.0;
 	void SetupOpenGL();
 	void RemoveOpenGL();
 	void InitOpenGL(void);
@@ -149,6 +155,13 @@ public:
 	afx_msg void OnUpdateShapesPyramid(CCmdUI* pCmdUI);
 	afx_msg void OnShapesFrustum();
 	afx_msg void OnUpdateShapesFrustum(CCmdUI* pCmdUI);
+	afx_msg void OnAffineTranslatefMouse();
+	afx_msg void OnUpdateAffineTranslatefMouse(CCmdUI* pCmdUI);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnAffineRotatefMouse();
+	afx_msg void OnUpdateAffineRotatefMouse(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in OpenGL_MFCView.cpp

@@ -68,6 +68,13 @@ BEGIN_MESSAGE_MAP(COpenGL_MFCView, CView)
 	ON_UPDATE_COMMAND_UI(ID_SHAPES_PYRAMID32823, &COpenGL_MFCView::OnUpdateShapesPyramid)
 	ON_COMMAND(ID_SHAPES_FRUSTUM32824, &COpenGL_MFCView::OnShapesFrustum)
 	ON_UPDATE_COMMAND_UI(ID_SHAPES_FRUSTUM32824, &COpenGL_MFCView::OnUpdateShapesFrustum)
+	ON_COMMAND(ID_AFFINE_TRANSLATEF32825, &COpenGL_MFCView::OnAffineTranslatefMouse)
+	ON_UPDATE_COMMAND_UI(ID_AFFINE_TRANSLATEF32825, &COpenGL_MFCView::OnUpdateAffineTranslatefMouse)
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
+	ON_COMMAND(ID_AFFINE_ROTATEF32826, &COpenGL_MFCView::OnAffineRotatefMouse)
+	ON_UPDATE_COMMAND_UI(ID_AFFINE_ROTATEF32826, &COpenGL_MFCView::OnUpdateAffineRotatefMouse)
 END_MESSAGE_MAP()
 
 // COpenGL_MFCView construction/destruction
@@ -134,7 +141,7 @@ void COpenGL_MFCView::InitOpenGL(void)
 	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 
-	GLfloat light_pos[] = { 0.0, 0.0, 1.0, 0.0 };
+	GLfloat light_pos[] = { 5.0, 5.0, 5.0, 0.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
 
 	GLfloat ambient[] = { 0.8, 0.8, 0.0, 1.0 };
@@ -153,7 +160,7 @@ void COpenGL_MFCView::InitOpenGL(void)
 	g_Base = MakeBase();
 
 	//Teapot
-	g_SolidTeapot = MakeSolidTeapot(3.0);
+	g_SolidTeapot = MakeSolidTeapot(2.0);
 
 	//Torus
 	g_SolidTorus = MakeSolidTorus(1.0f, 3.00f, 32, 32);
@@ -193,19 +200,19 @@ void COpenGL_MFCView::DrawCoordinate()
 	glBegin(GL_LINES);
 	glColor3f(1.0, 0.0, 0.0);
 	glVertex3f(0.0, 0.0, 0.0);
-	glVertex3f(10.0, 0.0, 0.0);
+	glVertex3f(100.0, 0.0, 0.0);
 	glEnd();
 
 	glBegin(GL_LINES);
 	glColor3f(0.0, 1.0, 0.0);
 	glVertex3f(0.0, 0.0, 0.0);
-	glVertex3f(0.0, 10.0, 0.0);
+	glVertex3f(0.0, 100.0, 0.0);
 	glEnd();
 
 	glBegin(GL_LINES);
 	glColor3f(0.0, 0.0, 1.0);
 	glVertex3f(0.0, 0.0, 0.0);
-	glVertex3f(0.0, 0.0, 10.0);
+	glVertex3f(0.0, 0.0, 100.0);
 	glEnd();
 
 	glEnable(GL_LIGHTING);
@@ -388,7 +395,12 @@ void COpenGL_MFCView::OnTimer(UINT_PTR nIDEvent)
 }
 
 
-
+float distance(int x1, int y1, int x2, int y2)
+{
+	// Calculating distance 
+	return sqrt(pow(x2 - x1, 2) +
+		pow(y2 - y1, 2) * 1.0);
+}
 //RenderScene
 void COpenGL_MFCView::OnPaint() 
 {
@@ -405,11 +417,20 @@ void COpenGL_MFCView::OnPaint()
 	DrawCoordinate();
 
 	//glCallList(g_Base);
-
 	//TranslateF
-	glTranslatef(xTr, yTr, zTr);
+	if (TranslateMouseCheck == 1)
+		glTranslatef((m_point2.x - m_point1.x) / 80, (m_point1.y - m_point2.y) / 80, zTr);
+	else
+		glTranslatef(xTr, yTr, zTr);
+
 	//RotateF
-	glRotatef(angleRo, xRo, yRo, zRo);
+	if (RotatefMouseCheck == 1)
+	{
+		angleRo = distance(m_point1.x, m_point1.y, m_point2.x, m_point2.y);
+		glRotatef(angleRo, (m_point2.y - m_point1.y), -(m_point1.x - m_point2.x), zRo);
+	}
+	else
+		glRotatef(angleRo, xRo, yRo, zRo);
 	//Select Shape and Render
 
 	Select_Shape_Render();
@@ -445,18 +466,15 @@ void COpenGL_MFCView::OnSelectrenderSolid()
 	SelectRender = 1;
 }
 
-
 void COpenGL_MFCView::OnSelectrenderLines()
 {
 	SelectRender = 2;
 }
 
-
 void COpenGL_MFCView::OnSelectrenderPoint()
 {
 	SelectRender = 3;
 }
-
 
 void COpenGL_MFCView::OnUpdateSelectrenderSolid(CCmdUI* pCmdUI)
 {
@@ -466,7 +484,6 @@ void COpenGL_MFCView::OnUpdateSelectrenderSolid(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnUpdateSelectrenderLines(CCmdUI* pCmdUI)
 {
 	if (SelectRender == 2)
@@ -474,7 +491,6 @@ void COpenGL_MFCView::OnUpdateSelectrenderLines(CCmdUI* pCmdUI)
 	else
 		pCmdUI->SetCheck(0);
 }
-
 
 void COpenGL_MFCView::OnUpdateSelectrenderPoint(CCmdUI* pCmdUI)
 {
@@ -484,12 +500,10 @@ void COpenGL_MFCView::OnUpdateSelectrenderPoint(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesTeapot()
 {
 	SelectShape = 1;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesTeapot(CCmdUI* pCmdUI)
 {
@@ -499,12 +513,10 @@ void COpenGL_MFCView::OnUpdateShapesTeapot(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesTorus()
 {
 	SelectShape = 2;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesTorus(CCmdUI* pCmdUI)
 {
@@ -514,12 +526,10 @@ void COpenGL_MFCView::OnUpdateShapesTorus(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesCube()
 {
 	SelectShape = 3;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesCube(CCmdUI* pCmdUI)
 {
@@ -529,12 +539,10 @@ void COpenGL_MFCView::OnUpdateShapesCube(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesBox()
 {
 	SelectShape = 4;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesBox(CCmdUI* pCmdUI)
 {
@@ -544,12 +552,10 @@ void COpenGL_MFCView::OnUpdateShapesBox(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesSphere()
 {
 	SelectShape = 5;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesSphere(CCmdUI* pCmdUI)
 {
@@ -559,12 +565,10 @@ void COpenGL_MFCView::OnUpdateShapesSphere(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesCylinder()
 {
 	SelectShape = 6;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesCylinder(CCmdUI* pCmdUI)
 {
@@ -574,12 +578,10 @@ void COpenGL_MFCView::OnUpdateShapesCylinder(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesTruncatedcone()
 {
 	SelectShape = 7;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesTruncatedcone(CCmdUI* pCmdUI)
 {
@@ -589,12 +591,10 @@ void COpenGL_MFCView::OnUpdateShapesTruncatedcone(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesCone()
 {
 	SelectShape = 8;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesCone(CCmdUI* pCmdUI)
 {
@@ -604,12 +604,10 @@ void COpenGL_MFCView::OnUpdateShapesCone(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesPyramid()
 {
 	SelectShape = 9;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesPyramid(CCmdUI* pCmdUI)
 {
@@ -619,12 +617,10 @@ void COpenGL_MFCView::OnUpdateShapesPyramid(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
-
 void COpenGL_MFCView::OnShapesFrustum()
 {
 	SelectShape = 10;
 }
-
 
 void COpenGL_MFCView::OnUpdateShapesFrustum(CCmdUI* pCmdUI)
 {
@@ -644,12 +640,10 @@ void COpenGL_MFCView::OnAffineTranslatef()
 	zTr = dlg.GetAdjustZtr();
 }
 
-
 void COpenGL_MFCView::OnUpdateAffineTranslatef(CCmdUI* pCmdUI)
 {
 
 }
-
 
 void COpenGL_MFCView::OnAffineRotatef()
 {
@@ -660,4 +654,71 @@ void COpenGL_MFCView::OnAffineRotatef()
 	xRo = dlg.GetAdjustXro();
 	yRo = dlg.GetAdjustYro();
 	zRo = dlg.GetAdjustZro();
+}
+
+void COpenGL_MFCView::OnAffineTranslatefMouse()
+{
+	xTr = 0.0f, yTr = 0.0f, zTr = 0.0f;
+	if (TranslateMouseCheck == 1)
+		TranslateMouseCheck = 0;
+	else
+		TranslateMouseCheck = 1;
+}
+
+
+void COpenGL_MFCView::OnUpdateAffineTranslatefMouse(CCmdUI* pCmdUI)
+{
+	if (TranslateMouseCheck == 1)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnAffineRotatefMouse()
+{
+	angleRo = 0.0f, xRo = 0.0f, yRo = 0.0f, zRo = 0.0f;
+	if (RotatefMouseCheck == 1)
+		RotatefMouseCheck = 0;
+	else
+		RotatefMouseCheck = 1;
+}
+
+
+void COpenGL_MFCView::OnUpdateAffineRotatefMouse(CCmdUI* pCmdUI)
+{
+	if (RotatefMouseCheck == 1)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}
+
+
+void COpenGL_MFCView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	m_point1 = point;
+	m_point2 = point;
+	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void COpenGL_MFCView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	m_point2 = point;
+	Invalidate();
+	CView::OnLButtonUp(nFlags, point);
+}
+
+
+void COpenGL_MFCView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	if (nFlags && MK_LBUTTON && (TranslateMouseCheck||RotatefMouseCheck))
+	{
+		m_point2 = point;
+		//Invalidate();
+	}
+	CView::OnMouseMove(nFlags, point);
 }

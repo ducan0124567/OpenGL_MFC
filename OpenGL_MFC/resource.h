@@ -103,13 +103,15 @@
 #define ID_SHAPES_CONE32822             32822
 #define ID_SHAPES_PYRAMID32823          32823
 #define ID_SHAPES_FRUSTUM32824          32824
+#define ID_AFFINE_TRANSLATEF32825       32825
+#define ID_AFFINE_ROTATEF32826          32826
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        314
-#define _APS_NEXT_COMMAND_VALUE         32825
+#define _APS_NEXT_COMMAND_VALUE         32827
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
