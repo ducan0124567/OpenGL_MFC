@@ -175,6 +175,3 @@ void COpenGL_MFCApp::SaveCustomState()
 
 // COpenGL_MFCApp message handlers
 
-
-
-

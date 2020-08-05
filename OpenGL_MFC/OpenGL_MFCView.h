@@ -17,7 +17,36 @@ public:
 	HGLRC m_hRC;
 	float m_angle = 0.0f;
 	int m_hTimer = 0;
-	
+	float m_x = 0.0;
+	float m_y = 0.0;
+	int checkx = 0;
+	int checky = 0;
+	float WidthScreen, HeightScreen;
+
+	// Draw Scene
+	int draw = 0;
+	float width = 3.0;
+	float height = 3.0;
+	double radius = 3.0;
+
+	// SelectLightPos
+	// 0 - off
+	// 1 - On
+	int SelectLightPos;
+
+	//SelectScalefMouss
+	// 0 - off
+	// 1 - on
+	int ScalefMouseCheck;
+
+	// Animation
+	// 0 - off
+	// 1 - animation 1
+	// 2 - animtion 2
+	// 3 - animtion 3
+	int SelectAnimation;
+
+	int SelectTexture = 0;
 	//Check Translatef with Mouse
 	// 0 - off
 	// 1 - on
@@ -84,6 +113,17 @@ public:
 	//RotateF
 	GLfloat angleRo = 0.0f, xRo = 0.0f, yRo = 0.0f, zRo = 0.0f;
 
+	//Texture
+	char* fileName;
+	GLuint texture;
+	
+	//Projection
+	int project;
+	float ratio;
+	float fovy;
+	float aspect;
+	float znear;
+	float zfar;
 	//gluLookAt
 	//GLdouble eyeX = 5.0, eyeY = 10.0, eyeZ = 15.0, centerX = 0.0, centerY = 0.0, centerZ = 0.0, upX = 0.0, upY = 1.0, upZ = 0.0;
 	GLdouble eyeX = 0.0, eyeY = 0.0, eyeZ = 15.0, centerX = 0.0, centerY = 0.0, centerZ = 0.0, upX = 0.0, upY = 1.0, upZ = 0.0;
@@ -91,7 +131,10 @@ public:
 	void RemoveOpenGL();
 	void InitOpenGL(void);
 	void DrawCoordinate();
-	void Select_Shape_Render();
+
+	void RenderAnimation();
+	void Draw_Scene();
+	void Draw_Size(float x1, float y1, float x2, float y2);
 
 
 // Operations
@@ -162,6 +205,23 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnAffineRotatefMouse();
 	afx_msg void OnUpdateAffineRotatefMouse(CCmdUI* pCmdUI);
+	afx_msg void OnLoadtexture();
+	afx_msg void OnTextureOfftexture();
+	afx_msg void OnProjectionOn();
+	afx_msg void OnProjectionOff();
+	afx_msg void OnUpdateLoadtexture(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateProjectionOn(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateTextureOfftexture(CCmdUI* pCmdUI);
+	afx_msg void OnAnimationAnimation1();
+	afx_msg void OnUpdateAnimationAnimation1(CCmdUI* pCmdUI);
+	afx_msg void OnAnimationAnimation2();
+	afx_msg void OnUpdateAnimationAnimation2(CCmdUI* pCmdUI);
+	afx_msg void OnAnimationAnimation3();
+	afx_msg void OnUpdateAnimationAnimation3(CCmdUI* pCmdUI);
+	afx_msg void OnLightLightposition();
+	afx_msg void OnUpdateLightLightposition(CCmdUI* pCmdUI);
+	afx_msg void OnAffineScalefMouse();
+	afx_msg void OnUpdateAffineScalefMouse(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in OpenGL_MFCView.cpp

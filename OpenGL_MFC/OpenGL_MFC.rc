@@ -152,12 +152,32 @@ BEGIN
         MENUITEM "Pyramid",                     ID_SHAPES_PYRAMID32823
         MENUITEM "Frustum",                     ID_SHAPES_FRUSTUM32824
     END
+    POPUP "Projection"
+    BEGIN
+        MENUITEM "Perspective",                 ID_PROJECTION_ON
+    END
     POPUP "Affine"
     BEGIN
         MENUITEM "Translatef",                  ID_AFFINE_TRANSLATEF
         MENUITEM "Rotatef",                     ID_AFFINE_ROTATEF32804
         MENUITEM "Translatef (Mouse)",          ID_AFFINE_TRANSLATEF32825
         MENUITEM "Rotatef (Mouse)",             ID_AFFINE_ROTATEF32826
+        MENUITEM "Scalef (Mouse)",              ID_AFFINE_SCALEF
+    END
+    POPUP "Light"
+    BEGIN
+        MENUITEM "Light Position (Mouse)",      ID_LIGHT_LIGHTPOSITION
+    END
+    POPUP "Texture"
+    BEGIN
+        MENUITEM "LoadTexture",                 ID_LoadTEXTURE
+        MENUITEM "OffTexture",                  ID_TEXTURE_OFFTEXTURE
+    END
+    POPUP "Animation"
+    BEGIN
+        MENUITEM "Animation 1",                 ID_ANIMATION_ANIMATION1
+        MENUITEM "Animation 2",                 ID_ANIMATION_ANIMATION2
+        MENUITEM "Animation 3",                 ID_ANIMATION_ANIMATION3
     END
 END
 
@@ -225,6 +245,22 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
 END
 
+IDD_PROJECTION_SETTING DIALOGEX 0, 0, 256, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Perspective Setting"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,106,50,14
+    EDITTEXT        IDC_EDIT1,113,35,76,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,113,15,77,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,113,55,76,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,113,75,76,14,ES_AUTOHSCROLL
+    LTEXT           "FOV Y",IDC_STATIC,73,20,21,8
+    LTEXT           "ASPECT RATIO",IDC_STATIC,66,38,28,8
+    LTEXT           "zNEAR",IDC_STATIC,72,59,21,8
+    LTEXT           "zFAR",IDC_STATIC,76,78,16,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -280,8 +316,27 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 55
     END
+
+    IDD_PROJECTION_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_PROJECTION_SETTING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -494,6 +549,22 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_TRANSLATEF_SETTING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ROTATEF_SETTING AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -534,22 +605,6 @@ BEGIN
 END
 
 #endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// AFX_DIALOG_LAYOUT
-//
-
-IDD_TRANSLATEF_SETTING AFX_DIALOG_LAYOUT
-BEGIN
-    0
-END
-
-IDD_ROTATEF_SETTING AFX_DIALOG_LAYOUT
-BEGIN
-    0
-END
 
 #endif    // Vietnamese (Vietnam) resources
 /////////////////////////////////////////////////////////////////////////////

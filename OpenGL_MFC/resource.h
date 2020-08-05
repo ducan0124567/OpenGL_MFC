@@ -30,6 +30,7 @@
 #define IDS_EDIT_MENU                   306
 #define IDD_TRANSLATEF_SETTING          310
 #define IDD_ROTATEF_SETTING             312
+#define IDD_PROJECTION_SETTING          315
 #define ID_BUTTON_XTR_DEC               1000
 #define ID_BUTTON_YTR_DEC               1001
 #define ID_BUTTON_ZTR_DEC               1002
@@ -37,6 +38,7 @@
 #define IDC_EDIT2                       1004
 #define IDC_EDIT3                       1005
 #define ID_BUTTON_XTR_INC               1006
+#define IDC_EDIT5                       1006
 #define ID_BUTTON_YTR_INC               1007
 #define IDC_BUTTON6                     1008
 #define ID_BUTTON_ZTR_INC               1008
@@ -105,13 +107,23 @@
 #define ID_SHAPES_FRUSTUM32824          32824
 #define ID_AFFINE_TRANSLATEF32825       32825
 #define ID_AFFINE_ROTATEF32826          32826
+#define ID_TEXTURE_LOADTEXTURE          32827
+#define ID_LoadTEXTURE                  32828
+#define ID_TEXTURE_OFFTEXTURE           32829
+#define ID_PROJECTION_ON                32830
+#define ID_PROJECTION_OFF               32831
+#define ID_ANIMATION_ANIMATION1         32832
+#define ID_ANIMATION_ANIMATION2         32833
+#define ID_ANIMATION_ANIMATION3         32834
+#define ID_LIGHT_LIGHTPOSITION          32835
+#define ID_AFFINE_SCALEF                32836
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        314
-#define _APS_NEXT_COMMAND_VALUE         32827
+#define _APS_NEXT_RESOURCE_VALUE        317
+#define _APS_NEXT_COMMAND_VALUE         32837
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
