@@ -167,6 +167,7 @@ BEGIN
     POPUP "Light"
     BEGIN
         MENUITEM "Light Position (Mouse)",      ID_LIGHT_LIGHTPOSITION
+        MENUITEM "Shadow",                      ID_LIGHT_SHADOW
     END
     POPUP "Texture"
     BEGIN

@@ -4,6 +4,7 @@
 
 #pragma once
 #include "GL/glut.h"
+#include "math/math3d.h"
 
 class COpenGL_MFCView : public CView
 {
@@ -23,11 +24,21 @@ public:
 	int checky = 0;
 	float WidthScreen, HeightScreen;
 
+	//Shadow
+	float xRot = 0.0f;
+	float yRot = 0.0f;
+	M3DMatrix44f shadowMat;
+
 	// Draw Scene
 	int draw = 0;
 	float width = 3.0;
 	float height = 3.0;
 	double radius = 3.0;
+
+	// SelectShadow
+	// 0 - off
+	// 1 - on
+	int SelectShadow;
 
 	// SelectLightPos
 	// 0 - off
@@ -136,6 +147,10 @@ public:
 	void Draw_Scene();
 	void Draw_Size(float x1, float y1, float x2, float y2);
 
+	void DrawShadow(int nShadow);
+
+	void RenderSceneShadow();
+	void RenderSceneNormal();
 
 // Operations
 public:
@@ -222,6 +237,8 @@ public:
 	afx_msg void OnUpdateLightLightposition(CCmdUI* pCmdUI);
 	afx_msg void OnAffineScalefMouse();
 	afx_msg void OnUpdateAffineScalefMouse(CCmdUI* pCmdUI);
+	afx_msg void OnLightShadow();
+	afx_msg void OnUpdateLightShadow(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in OpenGL_MFCView.cpp

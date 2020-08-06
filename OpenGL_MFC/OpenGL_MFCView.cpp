@@ -95,6 +95,8 @@ BEGIN_MESSAGE_MAP(COpenGL_MFCView, CView)
 	ON_UPDATE_COMMAND_UI(ID_LIGHT_LIGHTPOSITION, &COpenGL_MFCView::OnUpdateLightLightposition)
 	ON_COMMAND(ID_AFFINE_SCALEF, &COpenGL_MFCView::OnAffineScalefMouse)
 	ON_UPDATE_COMMAND_UI(ID_AFFINE_SCALEF, &COpenGL_MFCView::OnUpdateAffineScalefMouse)
+	ON_COMMAND(ID_LIGHT_SHADOW, &COpenGL_MFCView::OnLightShadow)
+	ON_UPDATE_COMMAND_UI(ID_LIGHT_SHADOW, &COpenGL_MFCView::OnUpdateLightShadow)
 END_MESSAGE_MAP()
 
 // COpenGL_MFCView construction/destruction
@@ -161,7 +163,7 @@ void COpenGL_MFCView::InitOpenGL(void)
 	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
-	
+
 	GLfloat light_pos[] = { 5.0, 5.0, 5.0, 0.0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
 
@@ -177,6 +179,10 @@ void COpenGL_MFCView::InitOpenGL(void)
 	GLfloat shininess = 50.0f;
 	glMateriali(GL_FRONT, GL_SHININESS, shininess);
 	
+	GLfloat specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+
+
 }
 
 void COpenGL_MFCView::DrawCoordinate()
@@ -208,6 +214,16 @@ void COpenGL_MFCView::Draw_Size(float x1, float y1, float x2, float y2) {
 	width = abs(x1 - x2) / 80;
 	height = abs(y1 - y2) / 80;
 	radius = sqrt(width * width + height * height);
+}
+
+void COpenGL_MFCView::DrawShadow(int nShadow)
+{
+
+	if (nShadow == 0)
+		glColor3f(1.0, 1.0, 1.0);
+	else
+		glColor3f(0.2, 0.2, 0.2);
+	Draw_Scene();
 }
 
 // Draw shape function
@@ -482,6 +498,182 @@ void COpenGL_MFCView::OnPaint()
 	CPaintDC dc(this); // device context for painting
 					   // TODO: Add your message handler code here
 					   // Do not call CView::OnPaint() for painting messages
+
+	if (project == 0) {
+		set_Projection(45.0f, ratio, 1.0, 100.0);
+	}
+	if (project == 1) {
+		set_Projection(fovy, aspect, znear, zfar);
+	}
+
+	if (SelectShadow == 1)
+		RenderSceneShadow();
+	else
+		RenderSceneNormal();
+
+	glFlush();
+	SwapBuffers(dc.m_ps.hdc);
+
+}
+
+void COpenGL_MFCView::RenderSceneShadow()
+{
+
+	M3DVector3f points[3] = { { -3.0f, -7.0f, -2.0f },
+	{ -3.0f, -7.0f, 2.0f },
+	{ 4.0f, -7.0f, 2.0f } };
+	// Get the plane equation from three points on the ground
+	M3DVector4f vPlaneEquation;
+	m3dGetPlaneEquation(vPlaneEquation, points[0], points[1], points[2]);
+
+
+	// Calculate projection matrix to draw shadow on the ground
+	GLfloat lightPos[] = { -(WidthScreen / 2) / 20, (HeightScreen / 2) / 20, 10.0, 0.0 };
+	if (SelectLightPos == 1)
+	{
+
+		lightPos[0] = -(WidthScreen / 2 - m_point2.x) / 10;
+		lightPos[1] = (HeightScreen / 2 - m_point2.y) / 10;
+	}
+	m3dMakePlanarShadowMatrix(shadowMat, vPlaneEquation, lightPos);
+
+
+
+	glEnable(GL_NORMALIZE);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	//// Move out Z axis so we can see everything
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+	gluLookAt(0.0, 15.0, 15.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glColor3f(0.5, 0.1, 0.8);
+	glVertex3f(25.0f, -5.0f, -25.0f);
+	glVertex3f(-25.0f, -5.0f, -25.0f);
+	glVertex3f(-25.0f, -5.0f, 25.0f);
+	glVertex3f(25.0f, -5.0f, 25.0f);
+	glEnd();
+	glPopMatrix();
+
+	glPushMatrix();
+
+	glEnable(GL_LIGHTING);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+
+	RenderAnimation();
+
+	//ScaleF
+	if (ScalefMouseCheck == 1)
+		glScalef((WidthScreen / 2 - m_point2.x) / 200, (HeightScreen / 2 - m_point2.y) / 200, 1.0);
+	else
+		glScalef(1.0, 1.0, 1.0);
+
+	//TranslateF
+	if (TranslateMouseCheck == 1)
+		glTranslatef((m_point2.x - WidthScreen / 2) / 80, (HeightScreen / 2 - m_point2.y) / 80, zTr);
+	else
+		glTranslatef(xTr, yTr, zTr);
+
+	//RotateF
+	if (RotatefMouseCheck == 1)
+	{
+		angleRo = distance(m_point1.x, m_point1.y, m_point2.x, m_point2.y);
+		glRotatef(angleRo, (m_point2.y - m_point1.y), -(m_point1.x - m_point2.x), zRo);
+	}
+	else
+		glRotatef(angleRo, xRo, yRo, zRo);
+
+	if (SelectShape==2|| SelectShape == 5|| SelectShape == 6 || SelectShape == 7|| SelectShape == 8)
+	{
+		glEnable(GL_TEXTURE_GEN_S);                     // Enable Texture Coord Generation For S 
+		glEnable(GL_TEXTURE_GEN_T);                     // Enable Texture Coord Generation For T
+	}
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	if (draw == 1)
+	{
+		glPushMatrix();
+		//(WidthScreen / 2 - m_point2.x) / 40, (HeightScreen / 2 - m_point2.y)
+		//Draw_Size(m_point1.x, m_point1.y, m_point2.x, m_point2.y);
+		Draw_Size(WidthScreen / 2, HeightScreen / 2, m_point2.x, m_point2.y);
+		DrawShadow(0);
+		glPopMatrix();
+	}
+	else
+	{
+		DrawShadow(0);
+	}
+	
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+
+	glPopMatrix();
+
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+	glPushMatrix();
+
+
+	glMultMatrixf((float*)shadowMat);
+
+
+	RenderAnimation();
+
+	//ScaleF
+	if (ScalefMouseCheck == 1)
+		glScalef((WidthScreen / 2 - m_point2.x) / 200, (HeightScreen / 2 - m_point2.y) / 200, 1.0);
+	else
+		glScalef(1.0, 1.0, 1.0);
+
+	//TranslateF
+	if (TranslateMouseCheck == 1)
+		glTranslatef((m_point2.x - WidthScreen / 2) / 80, (HeightScreen / 2 - m_point2.y) / 80, zTr);
+	else
+		glTranslatef(xTr, yTr, zTr);
+
+	//RotateF
+	if (RotatefMouseCheck == 1)
+	{
+		angleRo = distance(m_point1.x, m_point1.y, m_point2.x, m_point2.y);
+		glRotatef(angleRo, (m_point2.y - m_point1.y), -(m_point1.x - m_point2.x), zRo);
+	}
+	else
+		glRotatef(angleRo, xRo, yRo, zRo);
+
+	if (draw == 1)
+	{
+		glPushMatrix();
+		//(WidthScreen / 2 - m_point2.x) / 40, (HeightScreen / 2 - m_point2.y)
+		//Draw_Size(m_point1.x, m_point1.y, m_point2.x, m_point2.y);
+		Draw_Size(WidthScreen / 2, HeightScreen / 2, m_point2.x, m_point2.y);
+		DrawShadow(1);
+		glPopMatrix();
+	}
+	else
+	{
+		DrawShadow(1);
+	}
+
+
+	glPopMatrix();
+
+	//glPushMatrix();
+	//glTranslatef(lightPos[0] / 10, lightPos[1] / 10, lightPos[2] / 10);
+	//glColor3ub(255, 255, 0);
+	//glutSolidSphere(0.5f, 10, 10);
+	//glPopMatrix();
+
+
+	glEnable(GL_DEPTH_TEST);
+}
+
+void COpenGL_MFCView::RenderSceneNormal()
+{
 	if (SelectLightPos == 1)
 	{
 		GLfloat light_pos[] = { -(WidthScreen / 2 - m_point2.x) / 40, (HeightScreen / 2 - m_point2.y) / 40, 15.0, 0.0 };
@@ -489,21 +681,14 @@ void COpenGL_MFCView::OnPaint()
 	}
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Projection
-	if (project == 0) {
-		set_Projection(45.0f, ratio, 1.0, 100.0);
-	}
-	if (project == 1) {
-		set_Projection(fovy, aspect, znear, zfar);
-	}
+
 	glLoadIdentity();
 	
 	gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
-	//glCallList(g_Base);
+
 	glPushMatrix();
 	DrawCoordinate();
 
-	//glCallList(g_Base);
 
 	RenderAnimation();
 
@@ -556,12 +741,7 @@ void COpenGL_MFCView::OnPaint()
 	glDisable(GL_TEXTURE_GEN_S);
 	glDisable(GL_TEXTURE_GEN_T);
 	glPopMatrix();
-
-	glFlush();
-	SwapBuffers(dc.m_ps.hdc);
-
 }
-
 
 void COpenGL_MFCView::OnDestroy()
 {
@@ -883,6 +1063,10 @@ void COpenGL_MFCView::OnLoadtexture()
 {
 	SelectTexture = 1;
 	draw = 0;
+
+	GLfloat diff_use[] = { 1.0, 1.0, 1.0, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff_use);
+
 	CDC* pDC = GetDC();
 
 
@@ -926,6 +1110,8 @@ void COpenGL_MFCView::OnTextureOfftexture()
 	texture = 0;
 	fileName = NULL;
 	SelectTexture = 0;
+	GLfloat diff_use[] = { 0.8, 0.8, 0.0, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff_use);
 }
 
 
@@ -1071,3 +1257,22 @@ void COpenGL_MFCView::OnUpdateLightLightposition(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(0);
 }
 
+
+
+void COpenGL_MFCView::OnLightShadow()
+{
+	draw = 0;
+	if (SelectShadow == 1)
+		SelectShadow = 0;
+	else
+		SelectShadow = 1;
+}
+
+
+void COpenGL_MFCView::OnUpdateLightShadow(CCmdUI* pCmdUI)
+{
+	if (SelectShadow == 1)
+		pCmdUI->SetCheck(1);
+	else
+		pCmdUI->SetCheck(0);
+}

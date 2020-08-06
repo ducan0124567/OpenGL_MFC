@@ -13,8 +13,9 @@ GLuint MakeBase()
 	glColor3f(0.0f, 0.0f, 1.0f);
 	glPushMatrix();
 
+	glTranslatef(0.0, -5.0, 0.0);
 	glScalef(1.0f, 0.005f, 1.0f);
-	glutSolidCube(15.0f);
+	glutSolidCube(10.0f);
 
 	glPopMatrix();
 	glEnable(GL_LIGHTING);

@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{7ce30160-73f1-47d5-a228-9f99ded0b425}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGL_MFC.h">
@@ -57,6 +60,9 @@
     <ClInclude Include="Projection_Setting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="math\math3d.h">
+      <Filter>math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenGL_MFC.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Projection_Setting.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="math\math3d.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
