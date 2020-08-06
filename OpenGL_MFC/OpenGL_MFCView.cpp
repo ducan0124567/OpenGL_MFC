@@ -883,6 +883,10 @@ void COpenGL_MFCView::OnLoadtexture()
 {
 	SelectTexture = 1;
 	draw = 0;
+
+	GLfloat diff_use[] = { 1.0, 1.0, 1.0, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff_use);
+
 	CDC* pDC = GetDC();
 
 
@@ -926,6 +930,8 @@ void COpenGL_MFCView::OnTextureOfftexture()
 	texture = 0;
 	fileName = NULL;
 	SelectTexture = 0;
+	GLfloat diff_use[] = { 0.8, 0.8, 0.0, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff_use);
 }
 
 
